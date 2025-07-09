@@ -270,8 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 752592486155545116, guid: 534ddcdac68dad043b3c75706d848839, type: 3}
-  generateRange: {x: 18, y: 18}
-  characterNumber: 50
+  generateRange: {x: 20, y: 20}
+  characterNumber: 500
+  gridLength: 5
 --- !u!4 &358878463
 Transform:
   m_ObjectHideFlags: 0

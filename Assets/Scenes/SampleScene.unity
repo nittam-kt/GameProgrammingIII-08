@@ -1201,15 +1201,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1327674205686831306, guid: 83628a2e699576147adabb30587f44d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -92.7068
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 1327674205686831306, guid: 83628a2e699576147adabb30587f44d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.5
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 1327674205686831306, guid: 83628a2e699576147adabb30587f44d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 102.723206
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 1327674205686831306, guid: 83628a2e699576147adabb30587f44d4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2972,7 +2972,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101da82704144f7468d5234caaee1b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel: 30
+  accel: 15
+  jumpSpeed: 12
+  hint: {fileID: 1990381041}
 --- !u!54 &1139892226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2982,8 +2984,8 @@ Rigidbody:
   m_GameObject: {fileID: 1139892223}
   serializedVersion: 4
   m_Mass: 50
-  m_Drag: 5
-  m_AngularDrag: 5
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4433,7 +4435,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 14.999999
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -4448,7 +4450,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 8000
-  field of view: 77.31962
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 10
   m_Depth: 1
@@ -4474,13 +4476,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922094174}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03141034, y: -0.00015678967, z: 0.0049891328, w: 0.99949414}
-  m_LocalPosition: {x: -93.08, y: -19.06, z: 101.2}
+  m_LocalRotation: {x: 0.173646, y: -0.0008667814, z: 0.004915762, w: 0.9847955}
+  m_LocalPosition: {x: -16, y: -19, z: 227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 3.6, y: 0, z: 0.572}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0.572}
 --- !u!114 &1922094180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4539,7 +4541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 503737073}
   offset: {x: 0, y: 1.5, z: -2}
-  angleSpeed: 10
+  angleSpeed: 40
 --- !u!4 &1924216821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7285457758334040142, guid: 3d2422e4019c11948b6cfd8a1fe9e232, type: 3}
@@ -4716,6 +4718,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1990381041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4325135652533966629, guid: 83628a2e699576147adabb30587f44d4, type: 3}
+  m_PrefabInstance: {fileID: 503737072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993188240
 GameObject:
   m_ObjectHideFlags: 0
@@ -4984,12 +4991,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257142241421274527, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142241421274527, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDensity
-      value: 0.75
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 257142241421274527, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDistance
-      value: 155
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142241421274527, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeBillboardDistance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 257142241709043256, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_Layer
@@ -5072,12 +5087,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257142242276785753, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242276785753, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDensity
-      value: 0.75
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 257142242276785753, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDistance
-      value: 155
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242276785753, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeBillboardDistance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 257142242276785764, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_Layer
@@ -5085,7 +5108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 257142242276785764, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 257142242311654874, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_Layer
@@ -5118,14 +5141,26 @@ PrefabInstance:
     - target: {fileID: 257142242484871122, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242807247216, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeDistance
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 257142242807247216, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDensity
-      value: 0.75
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242807247216, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_DrawTreesAndFoliage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 257142242807247216, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDistance
-      value: 155
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242807247216, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeBillboardDistance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 257142242807247231, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_Layer
@@ -5144,12 +5179,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257142242937042229, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242937042229, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDensity
-      value: 0.75
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 257142242937042229, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_DetailObjectDistance
-      value: 155
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 257142242937042229, guid: f514be6126461c64eab6f02358f894f3, type: 3}
+      propertyPath: m_TreeBillboardDistance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 257142243187119938, guid: f514be6126461c64eab6f02358f894f3, type: 3}
       propertyPath: m_Layer

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class Character : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class Character : MonoBehaviour
     {
         rb.linearVelocity = transform.forward * speed;
 
-        foreach (var c in manager.characterList)
+        manager.GetGrid(transform.localPosition, out int gridX, out int gridY);
+//        foreach (var c in manager.characterList)
+        foreach (var c in manager.characterGirds[gridX][gridY])
         {
             if (c == this) continue;
 
