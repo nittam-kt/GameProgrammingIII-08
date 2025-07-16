@@ -6,10 +6,15 @@ public class Player : MonoBehaviour
     [SerializeField] float accel;
     [SerializeField] float jumpSpeed;
     [SerializeField] GameObject hint;
+    [SerializeField] float rotateRatio;
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject fire;
+    [SerializeField] float fireSpeed;
 
     Rigidbody rb;
     PlayerInput playerInput;
     bool isGrounding;
+    bool canJump;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,24 +37,36 @@ public class Player : MonoBehaviour
         right = right.normalized;
 
         var move3d = move.x * right + move.y * forward;
-        if (isGrounding)
+        if (isGrounding && move3d != Vector3.zero)
         {
             rb.AddForce(move3d * accel, ForceMode.Acceleration);
+            transform.forward = Vector3.Slerp(transform.forward, move3d, rotateRatio * Time.deltaTime);
         }
 
-        if (isGrounding && playerInput.actions["Jump"].WasPressedThisFrame())
+        if (canJump && playerInput.actions["Jump"].WasPressedThisFrame())
         {
             var vel = rb.linearVelocity;
             vel.y = jumpSpeed;
             rb.linearVelocity = vel;
         }
 
+        if (playerInput.actions["Attack"].WasCompletedThisFrame())
+        {
+            var f = Instantiate(fire);
+            f.SetActive(true);
+            f.transform.position = transform.TransformPoint(f.transform.localPosition);
+            f.GetComponent<Rigidbody>().linearVelocity = transform.forward * fireSpeed;
+        }
         hint.SetActive(isGrounding);
+
+        // アニメーターにスピードを与える
+        animator.SetFloat("Speed", rb.linearVelocity.magnitude);
     }
 
     private void FixedUpdate()
     {
         isGrounding = false;
+        canJump = false;
     }
 
     private void OnCollisionStay(Collision collision)
@@ -60,6 +77,10 @@ public class Player : MonoBehaviour
             if(normal.y > 0.5f)
             {
                 isGrounding = true;
+            }
+            if (normal.y > 0.9f)
+            {
+                canJump = true;
             }
         }
     }
