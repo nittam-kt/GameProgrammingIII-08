@@ -10,11 +10,18 @@ public class Player : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject fire;
     [SerializeField] float fireSpeed;
+    [SerializeField] public int life = 10;
+    [SerializeField] float knockbackSpeed;
+
+    public int lifeMax => 10;
+
+    const float damageTimeMax = 2f;
 
     Rigidbody rb;
     PlayerInput playerInput;
     bool isGrounding;
     bool canJump;
+    float damageTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,6 +68,11 @@ public class Player : MonoBehaviour
 
         // アニメーターにスピードを与える
         animator.SetFloat("Speed", rb.linearVelocity.magnitude);
+
+        if(damageTime > 0f)
+        {
+            damageTime -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -81,6 +93,14 @@ public class Player : MonoBehaviour
             if (normal.y > 0.9f)
             {
                 canJump = true;
+            }
+
+            // ダメージ処理
+            if (damageTime <= 0f && contact.otherCollider.gameObject.GetComponent<Enemy>() != null)
+            {
+                --life;
+                damageTime = damageTimeMax;
+                rb.AddForce(contact.normal * knockbackSpeed, ForceMode.Impulse);
             }
         }
     }
